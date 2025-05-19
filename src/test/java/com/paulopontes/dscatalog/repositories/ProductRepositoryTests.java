@@ -1,8 +1,9 @@
 package com.paulopontes.dscatalog.repositories;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import java.util.Optional;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +36,8 @@ public class ProductRepositoryTests {
 		
 		product = repository.save(product);
 		
-		Assertions.assertNotNull(product.getId());
-		Assertions.assertEquals(countTotalProducts + 1, product.getId());
+		assertNotNull(product.getId());
+		assertEquals(countTotalProducts + 1, product.getId());
 		
 	}
 	
@@ -46,7 +47,7 @@ public class ProductRepositoryTests {
 		repository.deleteById(existingId);
 		
 		Optional<Product> result = repository.findById(existingId);
-		Assertions.assertFalse(result.isPresent());
+		assertFalse(result.isPresent());
 	}
 	
 	@Test
@@ -54,8 +55,8 @@ public class ProductRepositoryTests {
 	    
 		Optional<Product> result = repository.findById(existingId);
 	    
-	    Assertions.assertTrue(result.isPresent());
-	    Assertions.assertNotNull(result.get());
+	    assertTrue(result.isPresent());
+	    assertNotNull(result.get());
 	}
 
 	@Test
@@ -63,8 +64,6 @@ public class ProductRepositoryTests {
 
 	    Optional<Product> result = repository.findById(nonExistingId);
 	    
-	    Assertions.assertTrue(result.isEmpty());
+	    assertTrue(result.isEmpty());
 	}
-
-
 }
